@@ -8,16 +8,134 @@ from AccessControl.SecurityManagement import newSecurityManager
 from os.path import join
 from collective.contentlicensing.utilities.interfaces import  IContentLicensingUtility
 from collective.contentlicensing.utilities.utils import ContentLicensingUtility
-from Products.contentmigration.inplace import InplaceCMFItemMigrator
+from Products.contentmigration.archetypes import ATItemMigrator
 from Products.CMFPlone.utils import normalizeString
 from zope.component import getUtility
 from zope.component import getMultiAdapter
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 
+#for patching
+from Products.kupu.plone.html2captioned import *
+
+
 # Configuracoes
-portal_id = 'foobar'
-user_id = 'foobar'
+portal_id = 'pessoal'
+user_id = 'admin'
+
+def convert(self, data, idata, filename=None, **kwargs):
+    """convert the data, store the result in idata and return that
+    optional argument filename may give the original file name of received data
+    additional arguments given to engine's convert, convertTo or __call__ are
+    passed back to the transform
+    
+    The object on which the translation was invoked is available as context
+    (default: None)
+    """
+    from zope.app.component.hooks import getSite
+    context = kwargs.get('context', None)
+    at_tool = None
+    site = getSite()
+    template = site.portal_skins.kupu_plone.kupu_captioned_image
+    
+    at_tool = site.archetype_tool
+    rc = at_tool.reference_catalog
+
+    if context is not None and at_tool is not None:
+        def replaceImage(match):
+            tag = match.group('pat0') or match.group('pat1')
+            attrs = ATTR_PATTERN.match(tag)
+            atag = match.group('atag0') or match.group('atag1')
+            src = attrs.group('src')
+            subtarget = None
+            m = SRC_TAIL.match(tag, attrs.end('src'))
+            if m is not None:
+                srctail = m.group(1)
+            else:
+                srctail = None
+            if src is not None:
+                d = attrs.groupdict()
+                target = self.resolveuid(context, rc, src)
+                if target is not None:
+                    d['class'] = attrs.group('class')
+                    d['originalwidth'] = attrs.group('width')
+                    d['originalalt'] = attrs.group('alt')
+                    d['url_path'] = target.absolute_url_path()
+                    d['caption'] = newline_to_br(html_quote(target.Description()))
+                    d['image'] = d['fullimage'] = target
+                    d['tag'] = None
+                    d['isfullsize'] = True
+                    d['width'] = target.width
+                    if srctail:
+                        if isinstance(srctail, unicode):
+                            srctail =srctail.encode('utf8') # restrictedTraverse doesn't accept unicode
+                        try:
+                            subtarget = target.restrictedTraverse(srctail)
+                        except:
+                            subtarget = getattr(target, srctail, None)
+                        if subtarget is not None:
+                            d['image'] = subtarget
+
+                        if srctail.startswith('image_'):
+                            d['tag'] = target.getField('image').tag(target, scale=srctail[6:])
+                        elif subtarget:
+                            d['tag'] = subtarget.tag()
+
+                    if d['tag'] is None:
+                        d['tag'] = target.tag()
+
+                    if subtarget is not None:
+                        d['isfullsize'] = subtarget.width == target.width and subtarget.height == target.height
+                        d['width'] = subtarget.width
+
+                    # strings that may contain non-ascii characters need to be decoded to unicode
+                    for key in ('caption', 'tag'):
+                        if isinstance(d[key], str):
+                            d[key] = d[key].decode('utf8', 'replace')
+
+                    if atag is not None: # Must preserve original link, don't overwrite with a link to the image
+                        d['isfullsize'] = True
+                        d['tag'] = "%s%s</a>" % (atag, d['tag'])
+
+                    result = template(**d)
+                    if isinstance(result, str):
+                        result = result.decode('utf8')
+
+                    return result
+
+            return match.group(0) # No change
+
+        if isinstance(data, str):
+            # Transform for end user output should avoid erroring
+            # if it can, so use 'replace' on decode.
+            data = data.decode('utf8', 'replace')
+        html = IMAGE_PATTERN.sub(replaceImage, data)
+
+        # Replace urls that use UIDs with human friendly urls.
+        def replaceUids(match):
+            tag = match.group('tag')
+            uid = match.group('uid')
+            target = self.resolveuid(context, rc, uid)
+            if target is not None:
+                if getattr(aq_base(target), 'getRemoteUrl', None) is not None:
+                    url = target.getRemoteUrl()
+                else:
+                    url = target.absolute_url_path()
+                return tag + url
+            return match.group(0)
+
+        html = UID_PATTERN.sub(replaceUids, html)
+        if isinstance(html, unicode):
+            html = html.encode('utf8') # Indexing requires a string result.
+        idata.setData(html)
+        return idata
+
+    # No context to use for replacements, so don't bother trying.
+    idata.setData(data)
+    return idata
+
+# Patching
+setattr(HTMLToCaptioned,'convert',convert)
 
 def walker(obj):
     print '/'.join(obj.getPhysicalPath()),obj.Type(),obj.__class__
@@ -60,13 +178,14 @@ def removeObjects(site,portal_types=[]):
         parent = item.aq_parent
         parent.manage_delObjects([item.getId(),])
 
-def migrateContent(site,source,destination):
+def migrateContent(site,source,destination,destinationMeta):
     ct = site.portal_catalog    
     results = ct.searchResults(portal_type=source)
     for b in results:
         item = b.getObject()
-        migrator = InplaceCMFItemMigrator(item)
+        migrator = ATItemMigrator(item)
         migrator.dst_portal_type = destination
+        migrator.dst_meta_type = destinationMeta
         migrator.migrate()
     
 
@@ -126,9 +245,10 @@ migration = site.portal_migration
 migration.upgrade()
 
 # Migra clases
-pt_origem = 'News Item'
-pt_destino = 'Blog Entry'
-migrateContent(site,source=pt_origem,destination=pt_destino)
+pt_origem = 'Blog Entry'
+pt_destino = 'News Item'
+mt_destino = 'ATNewsItem'
+migrateContent(site,source=pt_origem,destination=pt_destino,destinationMeta=mt_destino)
 
 # Ajusta idioma para pt-BR
 language = 'pt-br'
@@ -173,6 +293,9 @@ uninstallProducts(site,products)
 
 if site_properties.getProperty('enable_link_integrity_checks', False):
     site_properties.manage_changeProperties(enable_link_integrity_checks=True)
+
+# E para finalizar, limpamos o custom
+site.portal_skins.custom.manage_delObjects(site.portal_skins.custom.objectIds())
 
 # Realiza o commit da transacao
 transaction.commit()
