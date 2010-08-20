@@ -148,7 +148,7 @@ def walker(obj):
         walker(obj[oId])
 
 def removeComponents(sm,searchStr):
-    
+    print 'Removendo components de %s' % searchStr
     adapters = sm.utilities._adapters
     for x in adapters[0].keys():
         if x.__module__.find(searchStr) != -1:
@@ -266,6 +266,8 @@ products = ['PlonePopoll','beyondskins.erico.site2009','CacheSetup',
             'CMFContentPanels', 'Products.CMFSquidTool',
             'collective.plonetruegallery','CMFSquidTool',
             'Products.PlonePopoll','PlonePopoll',
+            'Products.RedirectionTool','RedirectionTool',
+            'Products.PloneKeywordManager','PloneKeywordManager',
             'collective.js.jquery','collective.js.jqueryui',
             'collective.contentlicensing','collective.easyslider',
             'sc.social.bookmarks','Products.Scrawl','Scrawl']
@@ -277,16 +279,8 @@ componentes = ['collective.contentlicensing',
 for componente in componentes:
     removeComponents(sm,componente)
 
-try:
-    util_obj = sm.getUtility(IContentLicensingUtility)
-    sm.unregisterUtility(provided=IContentLicensingUtility)
-    del util_obj
-    sm.utilities.unsubscribe((), IContentLicensingUtility)
-    del sm.utilities.__dict__['_provided'][IContentLicensingUtility]
-    del sm.utilities._subscribers[0][IContentLicensingUtility]
-except:
-    print 'Error deleting Utility'
-
+sm.unregisterUtility(provided=IContentLicensingUtility)
+sm.utilities.unsubscribe((), IContentLicensingUtility)
 
 # Desinstala produtos
 uninstallProducts(site,products)
@@ -307,5 +301,5 @@ print 'Sincroniza ZEO'
 print 'Finalizado as ',
 print datetime.now().isoformat()
 
-print 'Walker:'
-walker(site)
+#print 'Walker:'
+#walker(site)
