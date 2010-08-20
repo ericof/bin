@@ -42,7 +42,7 @@ branch_color ()
 }
 
 # user@server, relative path, current time 
-export PS1='\[\e[32m\][\u@\h] \[\e[33m\w\] [\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]] \n\[\e[1;34m\][\t]\[\e[0m\] \$ '
+export PS1='\[\e[32m\][\u@\h] \[\e[33m\w\] [\[$(branch_color)\]$(parse_git_branch)\[${c_sgr0}\]\e[33m] \n\[\e[1;34m\][\t]\[\e[0m\] \$ '
 
 ##
 # Your previous /Users/erico/.bash_profile file was backed up as /Users/erico/.bash_profile.macports-saved_2010-07-06_at_18:14:32
