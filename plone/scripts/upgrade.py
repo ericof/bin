@@ -257,6 +257,8 @@ setDefaultLanguage(site,language)
 # Remove portlets
 removePortlets(site)
 removePortlets(site.blog)
+removePortlets(site.teatro)
+removePortlets(site.artigos)
 
 # Remove tipos nao usados
 portal_types = ['PlonePopoll','ContentPanels',]
@@ -265,6 +267,7 @@ removeObjects(site,portal_types)
 products = ['PlonePopoll','beyondskins.erico.site2009','CacheSetup',
             'CMFContentPanels', 'Products.CMFSquidTool',
             'collective.plonetruegallery','CMFSquidTool',
+            'Products.ImageEditor','CMFSquidTool',
             'Products.PlonePopoll','PlonePopoll',
             'Products.RedirectionTool','RedirectionTool',
             'Products.PloneKeywordManager','PloneKeywordManager',
@@ -288,6 +291,19 @@ uninstallProducts(site,products)
 if site_properties.getProperty('enable_link_integrity_checks', False):
     site_properties.manage_changeProperties(enable_link_integrity_checks=True)
 
+# removemos a visao padrao da pasta de blog
+site.blog['toro-de-parpite'].layout = ''
+
+# Apagamos o TranslationService
+app.Control_Panel._delObject('TranslationService')
+
+# Apagamos os produtos dentro de Products
+products = app.Control_Panel.Products.objectIds()
+for product in products:
+    try:
+        app.Control_Panel.Products._delObject(product)
+    except AttributeError:
+        print 'Erro ao apagar:%s' % product
 # E para finalizar, limpamos o custom
 site.portal_skins.custom.manage_delObjects(site.portal_skins.custom.objectIds())
 
