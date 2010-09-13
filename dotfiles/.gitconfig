@@ -3,3 +3,18 @@
 	email = erico@simplesconsultoria.com.br
 [color]
 	ui = true
+
+[core]
+    excludesfile = ~/.gitignore
+    editor = mate -w
+    
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    lg = log
+    up = pull
+    pom = push origin master
+    export = !mkdir tmpexport | git archive master | tar -x -C tmpexport/
