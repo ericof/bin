@@ -1,0 +1,2 @@
+#!/bin/bash
+source ~/python/envs/py-releaser/bin/activate
