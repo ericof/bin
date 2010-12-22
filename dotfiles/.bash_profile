@@ -1,5 +1,7 @@
-export SVN_EDITOR=gvim
+export SVN_EDITOR="gvim --nofork"
 export PYTHONSTARTUP=~/.pythonrc.py
+export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
+export PATH="~/Desenvolvimento/google_appengine:$PATH"
 shopt -s histappend 
 export PROMPT_COMMAND='history -a' 
 # Don't put duplicate lines in the history 
