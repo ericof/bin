@@ -3,7 +3,7 @@
 # store-auth-creds = no
 
 [helpers]
-editor-cmd = mate -w
+editor-cmd = "gvim --nofork"
 # diff-cmd = diff_program (diff, gdiff, etc.)
 # diff3-cmd = diff3_program (diff3, gdiff3, etc.)
 # diff3-has-program-arg = [true | false]
@@ -14,7 +14,7 @@ editor-cmd = mate -w
 # rsh = /path/to/rsh -l myusername
 
 [miscellany]
-global-ignores = *.o *.lo *.la #*# .*.rej *.rej .*~ *~ .#* .DS_Store *.pyc *.bak *.tmp *.swp *.pyo *.project *.pydevproject *.egg-info
+global-ignores = *.o *.lo *.la #*# .*.rej *.rej .*~ *~ .#* .DS_Store *.pyc *.bak *.tmp *.swp *.pyo *.project *.pydevproject *.egg-info .pida-metadata .buildinfo .doctrees
 # log-encoding = latin1
 # use-commit-times = yes
 # no-unlock = yes
