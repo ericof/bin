@@ -1,5 +1,5 @@
 [user]
-	name = Erico Andrei
+	name = Érico Andrei
 	email = erico@simplesconsultoria.com.br
 [color]
 	ui = true
@@ -18,3 +18,7 @@
     up = pull
     pom = push origin master
     export = !mkdir tmpexport | git archive master | tar -x -C tmpexport/
+[codebase]
+	username = ericof
+	apikey = kvfez0i3yqc879avecev0hf4kp8pxbe77hjsxn9a
+	domain = simplesconsultoria.codebasehq.com

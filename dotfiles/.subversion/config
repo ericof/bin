@@ -1,9 +1,11 @@
 [auth]
-# store-passwords = no
+store-passwords = no
 # store-auth-creds = no
 
+password-stores =
 [helpers]
-editor-cmd = "gvim --nofork"
+editor-cmd = "vim"
+#editor-cmd = "gvim --nofork"
 # diff-cmd = diff_program (diff, gdiff, etc.)
 # diff3-cmd = diff3_program (diff3, gdiff3, etc.)
 # diff3-has-program-arg = [true | false]
@@ -14,7 +16,7 @@ editor-cmd = "gvim --nofork"
 # rsh = /path/to/rsh -l myusername
 
 [miscellany]
-global-ignores = *.o *.lo *.la #*# .*.rej *.rej .*~ *~ .#* .DS_Store *.pyc *.bak *.tmp *.swp *.pyo *.project *.pydevproject *.egg-info .pida-metadata .buildinfo .doctrees
+global-ignores = *.o *.lo *.la #*# .*.rej *.rej .*~ *~ .#* .DS_Store *.pyc *.bak *.tmp *.swp *.pyo *.project *.pydevproject *.egg-info .pida-metadata .buildinfo .doctrees develop-eggs fake-eggs eggs archgenxml.log *.egg-info *.mo build dist .mr.developer.cfg
 # log-encoding = latin1
 # use-commit-times = yes
 # no-unlock = yes
