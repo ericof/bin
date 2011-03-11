@@ -1,10 +1,12 @@
 [auth]
-store-passwords = no
+store-passwords = yes
 # store-auth-creds = no
+#password-stores = gnome-keyring
+password-stores = keychain
 
-password-stores =
 [helpers]
-editor-cmd = "vim"
+editor-cmd = "mate -w"
+#editor-cmd = "vim"
 #editor-cmd = "gvim --nofork"
 # diff-cmd = diff_program (diff, gdiff, etc.)
 # diff3-cmd = diff3_program (diff3, gdiff3, etc.)
