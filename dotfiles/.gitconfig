@@ -6,7 +6,7 @@
 
 [core]
     excludesfile = ~/.gitignore
-    editor = vim
+    editor = "mate -w"
     
 [alias]
     st = status
