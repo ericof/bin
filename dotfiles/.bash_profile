@@ -22,6 +22,11 @@ parse_git_branch () {
         git name-rev HEAD 2>/dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
 }
 
+#Should we push?
+parse_git_push () {
+        git st 2>/dev/null|sed -ne "s/#\ Your\ branch\ is\ ahead\ of\ '.*' by \([0-9]\)\ commits\{0,1\}./ +\1/p"
+}
+
 #Get svn information
 ##Get svn url
 parse_svn_url() {
@@ -48,7 +53,12 @@ branch_color ()
                 color=""
                 if git diff --quiet 2>/dev/null >&2 
                 then
-                        color="${c_green}"
+					if [ `git st -s --untracked-files=no 2>/dev/null|wc -l` -gt 0 ]
+					then 
+                        color="${c_cyan}"
+					else
+						color="${c_green}"
+					fi
                 else
                         color=${c_red}
                 fi
@@ -79,4 +89,4 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # user@server, relative path, current time 
-export PS1='\[\e[32m\][\u@\h] \[\e[33m\w\] [\[$(branch_color)\]$(parse_git_branch)$(parse_svn_branch_revision)\[${c_sgr0}\]\e[33m] \n\[\e[1;34m\][\t]\[\e[0m\] \$ '
+export PS1='\[\e[32m\][\u@\h] \[\e[33m\w\] [\[$(branch_color)\]$(parse_git_branch)$(parse_git_push)$(parse_svn_branch_revision)\[${c_sgr0}\]\e[33m] \n\[\e[1;34m\][\t]\[\e[0m\] \$ '
