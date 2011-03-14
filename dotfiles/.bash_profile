@@ -1,6 +1,7 @@
 #export SVN_EDITOR="gvim --nofork"
 export SVN_EDITOR="mate -w"
 export LANG=en_US.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
