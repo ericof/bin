@@ -1,0 +1,15 @@
+[ui]
+username = Erico Andrei <erico@simplesconsultoria.com.br>
+editor = "mate -w"
+
+[extensions]
+color=
+convert=
+
+[color]
+status.modified = magenta bold
+status.added = green bold
+status.removed = red bold
+status.deleted = cyan bold
+status.unknown = blue bold
+status.ignored = black bold
