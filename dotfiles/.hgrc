@@ -1,6 +1,6 @@
 [ui]
 username = Erico Andrei <erico@simplesconsultoria.com.br>
-editor = "mate -w"
+editor = mate -w
 
 [extensions]
 color=
