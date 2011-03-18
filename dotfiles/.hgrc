@@ -1,6 +1,7 @@
 [ui]
 username = Erico Andrei <erico@simplesconsultoria.com.br>
 editor = mate -w
+ignore = ~/.hgignore
 
 [extensions]
 color=
