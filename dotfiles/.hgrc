@@ -6,6 +6,7 @@ ignore = ~/.hgignore
 [extensions]
 color=
 convert=
+mercurial_keyring = 
 
 [color]
 status.modified = magenta bold
@@ -14,3 +15,7 @@ status.removed = red bold
 status.deleted = cyan bold
 status.unknown = blue bold
 status.ignored = black bold
+
+[auth]
+bitbucket.prefix = https://bitbucket.org
+bitbucket.username = ericof
