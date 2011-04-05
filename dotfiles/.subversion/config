@@ -18,7 +18,7 @@ editor-cmd = "mate -w"
 # rsh = /path/to/rsh -l myusername
 
 [miscellany]
-global-ignores = *.o *.lo *.la #*# .*.rej *.rej .*~ *~ .#* .DS_Store *.pyc *.bak *.tmp *.swp *.pyo *.project *.pydevproject *.egg-info .pida-metadata .buildinfo .doctrees develop-eggs fake-eggs eggs archgenxml.log *.egg-info *.mo build dist .mr.developer.cfg
+global-ignores = *.o *.lo *.la #*# .*.rej *.rej .*~ *~ .#* .DS_Store *.pyc *.bak *.tmp *.swp *.pyo *.project *.pydevproject *.egg-info .pida-metadata .buildinfo .doctrees develop-eggs fake-eggs eggs archgenxml.log *.egg-info *.mo build dist .mr.developer.cfg .hg .git
 # log-encoding = latin1
 # use-commit-times = yes
 # no-unlock = yes
