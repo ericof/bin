@@ -4,7 +4,7 @@ export LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH="/opt/local/bin:/opt/local/sbin:~/bin/scripts:$PATH"
 export PATH="~/Desenvolvimento/google_appengine:$PATH"
 shopt -s histappend 
 export PROMPT_COMMAND='history -a' 
