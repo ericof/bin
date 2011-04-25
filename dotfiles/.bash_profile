@@ -2,6 +2,7 @@
 export SVN_EDITOR="mate -w"
 export LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
+export COPYFILE_DISABLE=1 #Remove resource forks from tar files
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
 export PATH="/opt/local/bin:/opt/local/sbin:~/bin/scripts:$PATH"
