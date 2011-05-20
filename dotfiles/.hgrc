@@ -9,6 +9,8 @@ convert=
 mercurial_keyring = 
 hgsubversion =
 bookmarks=
+hgext.bookmarks =
+
 
 [color]
 status.modified = magenta bold
