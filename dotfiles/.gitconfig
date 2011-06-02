@@ -18,6 +18,7 @@
     up = pull
     pom = push origin master
     export = !mkdir tmpexport | git archive master | tar -x -C tmpexport/
+
 [codebase]
 	username = ericof
 	domain = simplesconsultoria.codebasehq.com
