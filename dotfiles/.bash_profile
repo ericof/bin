@@ -26,7 +26,7 @@ parse_git_branch () {
 
 #Should we push?
 parse_git_push () {
-        git st 2>/dev/null|sed -ne "s/#\ Your\ branch\ is\ ahead\ of\ '.*' by \([0-9]\)\ commits\{0,1\}./ +\1/p"
+        git st 2>/dev/null|sed -ne "s/#\ Your\ branch\ is\ ahead\ of\ '.*' by \([0-9]*\)\ commits\{0,1\}./ +\1/p"
 }
 
 #Get svn information
