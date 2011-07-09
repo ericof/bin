@@ -46,3 +46,11 @@ Thumbs.db
 *.project
 *.pydevproject
 *.egg-info
+*-py2.4.egg
+*-py2.6.egg
+
+# Buildout stuff #
+######################
+.installed.cfg
+py26
+py24
