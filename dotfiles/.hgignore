@@ -1,35 +1,69 @@
 # use glob syntax.
 syntax: glob
-#*# 
-*.bak
-*.egg-info
-*.elc
-*.la 
-*.lo 
-*.mo
-*.o 
-*.project
-*.pyc
-*.pydevproject
-*.pyo
-*.rej
-*.swp
-*.tmp
-*~
-.#*
-.*.rej
-.*~
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.lo
+*.la
+
+# vc files/folders #
+########################
 .svn
-.git
-.buildinfo
-.doctrees
+.hg
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
 .DS_Store
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Python stuff #
+######################
+*.pyc
+*.bak
+*.tmp
+*.swp
+*.pyo
+*.project
+*.pydevproject
+*.egg-info
+*-py2.4.egg
+*-py2.6.egg
+
+# Buildout stuff #
+######################
 .installed.cfg
 .mr.developer.cfg
-.pida-metadata
-archgenxml.log
-build
-develop-eggs
-dist
-eggs
-fake-eggs
+py26
+py24
+
+# Sphinx stuff #
+######################
+.buildinfo
+.doctrees
