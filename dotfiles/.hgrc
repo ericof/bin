@@ -10,6 +10,8 @@ mercurial_keyring =
 hgsubversion =
 bookmarks=
 hgext.bookmarks =
+hggit=
+fetch=
 
 
 [color]
