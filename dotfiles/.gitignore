@@ -53,6 +53,10 @@ Thumbs.db
 *-py2.4.egg
 *-py2.6.egg
 
+# i18n stuff #
+######################
+*.mo
+
 # Buildout stuff #
 ######################
 .installed.cfg
