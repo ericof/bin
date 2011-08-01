@@ -1,4 +1,5 @@
 #export SVN_EDITOR="gvim --nofork"
+export ARCHFLAGS="-arch x86_64"
 export SVN_EDITOR="mate -w"
 export LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
