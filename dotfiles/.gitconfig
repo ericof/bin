@@ -5,7 +5,7 @@
 	ui = true
 
 [core]
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/erico/.gitignore
     editor = "mate -w"
     
 [alias]
@@ -22,3 +22,9 @@
 [codebase]
 	username = ericof
 	domain = simplesconsultoria.codebasehq.com
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
