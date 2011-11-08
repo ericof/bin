@@ -1,30 +1,47 @@
 [user]
-	name = Érico Andrei
-	email = erico@simplesconsultoria.com.br
+    name = Érico Andrei
+    email = erico@simplesconsultoria.com.br
+
+[branch]
+autosetupmerge = true
+
+[push]
+default = current
+
 [color]
-	ui = true
+    ui = true
+    diff = auto
+    branch = auto
+    status = auto
 
 [core]
-	excludesfile = /Users/erico/.gitignore
+    excludesfile = /Users/erico/.gitignore
     editor = "mate -w"
     
 [alias]
     st = status
-    ci = commit
-    br = branch
+    ci = commit -v
+    cia = commit -v -a
+    b = branch
     co = checkout
+    cp = cherry-pick
     df = diff
-    lg = log
+    l = log
+    ll = log -p
+    reha = reset --hard
     up = pull
     pom = push origin master
     export = !mkdir tmpexport | git archive master | tar -x -C tmpexport/
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
 [codebase]
-	username = ericof
-	domain = simplesconsultoria.codebasehq.com
+    username = ericof
+    domain = simplesconsultoria.codebasehq.com
+
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
