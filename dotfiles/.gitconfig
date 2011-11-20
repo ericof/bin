@@ -3,10 +3,10 @@
     email = erico@simplesconsultoria.com.br
 
 [branch]
-autosetupmerge = true
+    autosetupmerge = true
 
 [push]
-default = current
+    default = current
 
 [color]
     ui = true
@@ -17,6 +17,7 @@ default = current
 [core]
     excludesfile = /Users/erico/.gitignore
     editor = "mate -w"
+	autocrlf = input
     
 [alias]
     st = status
