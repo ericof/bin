@@ -8,7 +8,7 @@ export LC_MESSAGES=en_US.UTF-8
 export COPYFILE_DISABLE=1 #Remove resource forks from tar files
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
-export PATH="/Developer/usr/bin/:/opt/local/bin:/opt/local/sbin:~/bin/scripts:$PATH"
+export PATH="/Developer/usr/bin/:/opt/local/bin:/opt/local/sbin:~/bin/:~/bin/scripts:$PATH"
 export PATH="~/Desenvolvimento/google_appengine:$PATH"
 shopt -s histappend 
 export PROMPT_COMMAND='history -a' 
