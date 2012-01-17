@@ -16,7 +16,7 @@
 
 [core]
     excludesfile = /Users/erico/.gitignore
-    editor = "mate -w"
+    editor = "subl -w"
 	autocrlf = input
     
 [alias]
