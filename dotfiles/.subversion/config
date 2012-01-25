@@ -5,7 +5,7 @@ store-passwords = yes
 password-stores = keychain
 
 [helpers]
-editor-cmd = "mate -w"
+editor-cmd = "subl -w"
 #editor-cmd = "vim"
 #editor-cmd = "gvim --nofork"
 # diff-cmd = diff_program (diff, gdiff, etc.)

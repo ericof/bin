@@ -12,6 +12,7 @@ bookmarks=
 hgext.bookmarks =
 hggit=
 fetch=
+hgext.graphlog =
 
 
 [color]
