@@ -2,7 +2,7 @@
 # MacOSX Lion
 export ARCHFLAGS="-arch x86_64"
 export MACOSX_DEPLOYMENT_TARGET="10.7"
-export SVN_EDITOR="mate -w"
+export SVN_EDITOR="subl -w"
 export LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 export COPYFILE_DISABLE=1 #Remove resource forks from tar files
