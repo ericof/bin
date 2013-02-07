@@ -8,20 +8,21 @@ export LC_MESSAGES=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export COPYFILE_DISABLE=1 #Remove resource forks from tar files
 export PYTHONSTARTUP=~/.pythonrc.py
-export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
-export PATH="~/Simples/Produtos/buildout.development/bin:~/Desenvolvimento/google_appengine:/Developer/usr/bin/:/opt/local/bin:/opt/local/sbin:~/bin/:~/bin/scripts:$PATH"
-shopt -s histappend 
-export PROMPT_COMMAND='history -a' 
-# Don't put duplicate lines in the history 
-export HISTCONTROL=ignoreboth 
+#export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
+export PATH="~/Simples/Produtos/buildout.development/bin:~/bin/:~/bin/scripts:$PATH"
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+# Don't put duplicate lines in the history
+export HISTCONTROL=ignoreboth
 export HISTSIZE=50000
+unset LC_CTYPE
 
 # GIT Magic
 c_cyan=`tput setaf 6`
 c_red=`tput setaf 1`
 c_green=`tput setaf 2`
 c_sgr0=`tput sgr0`
- 
+
 #Get git information
 parse_git_branch () {
         git name-rev HEAD 2>/dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
@@ -56,10 +57,10 @@ branch_color ()
         if [ `parse_git_branch|grep -c 'git'` -gt 0 ]
         then
                 color=""
-                if git diff --quiet 2>/dev/null >&2 
+                if git diff --quiet 2>/dev/null >&2
                 then
 					if [ `git st -s --untracked-files=no 2>/dev/null|wc -l` -gt 0 ]
-					then 
+					then
                         color="${c_cyan}"
 					else
 						color="${c_green}"
@@ -68,8 +69,8 @@ branch_color ()
                         color=${c_red}
                 fi
         else
-                if [ `parse_svn_branch_revision|grep -c 'svn'` -gt 0 ] 
-                then	
+                if [ `parse_svn_branch_revision|grep -c 'svn'` -gt 0 ]
+                then
 						color=''
 						##Parse st response
                         if [ `svn st -q|wc -l` -eq 0 ]
@@ -93,5 +94,5 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# user@server, relative path, current time 
+# user@server, relative path, current time
 export PS1='\[\e[32m\][\u@\h] \[\e[33m\w\] [\[$(branch_color)\]$(parse_git_branch)$(parse_git_push)$(parse_svn_branch_revision)\[${c_sgr0}\]\e[33m] \n\[\e[1;34m\][\t]\[\e[0m\] \$ '
