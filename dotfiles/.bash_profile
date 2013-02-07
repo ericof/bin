@@ -1,10 +1,11 @@
 #export SVN_EDITOR="gvim --nofork"
 # MacOSX Lion
 export ARCHFLAGS="-arch x86_64"
-export MACOSX_DEPLOYMENT_TARGET="10.7"
+export MACOSX_DEPLOYMENT_TARGET="10.8"
 export SVN_EDITOR="subl -w"
-export LANG=en_US.UTF-8
+export LC_LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 export COPYFILE_DISABLE=1 #Remove resource forks from tar files
 export PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
