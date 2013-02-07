@@ -6,13 +6,13 @@ ignore = ~/.hgignore
 [extensions]
 color=
 convert=
-mercurial_keyring = 
-hgsubversion =
-bookmarks=
-hgext.bookmarks =
-hggit=
-fetch=
-hgext.graphlog =
+mercurial_keyring =
+#hgsubversion =
+#bookmarks=
+#hgext.bookmarks =
+#hggit=
+#fetch=
+#hgext.graphlog =
 
 
 [color]
