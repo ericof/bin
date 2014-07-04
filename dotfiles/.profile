@@ -7,3 +7,4 @@
 #    PATH=~/bin:"${PATH}"
 #fi
 #export PATH
+export PATH=$HOME/local/bin:$PATH
