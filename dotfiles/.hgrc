@@ -10,7 +10,7 @@ mercurial_keyring =
 #hgsubversion =
 #bookmarks=
 #hgext.bookmarks =
-#hggit=
+hggit=
 #fetch=
 #hgext.graphlog =
 
