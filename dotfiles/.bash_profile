@@ -9,7 +9,7 @@ export LC_CTYPE=en_US.UTF-8
 export COPYFILE_DISABLE=1 #Remove resource forks from tar files
 export PYTHONSTARTUP=~/.pythonrc.py
 #export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
-export PATH="~/Simples/Produtos/buildout.development/bin:~/bin/:~/bin/scripts:$PATH"
+export PATH="~/Simples/Produtos/buildout.development/bin:/Applications/Vagrant/bin/:~/bin/:~/bin/scripts:$PATH"
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
 # Don't put duplicate lines in the history
