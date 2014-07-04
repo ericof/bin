@@ -1,7 +1,7 @@
 #export SVN_EDITOR="gvim --nofork"
 # MacOSX Lion
 export ARCHFLAGS="-arch x86_64"
-export MACOSX_DEPLOYMENT_TARGET="10.8"
+export MACOSX_DEPLOYMENT_TARGET="10.9"
 export SVN_EDITOR="subl -w"
 export LC_LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
