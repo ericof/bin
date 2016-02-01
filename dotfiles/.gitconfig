@@ -1,6 +1,6 @@
 [user]
     name = Érico Andrei
-    email = erico@simplesconsultoria.com.br
+    email = ericof@gmail.com
 
 [branch]
     autosetupmerge = true
@@ -15,9 +15,9 @@
     status = auto
 
 [core]
-    excludesfile = /Users/erico/.gitignore
+    excludesfile = ~/.gitignore
     editor = "subl -w"
-	autocrlf = input
+    autocrlf = input
     
 [alias]
     st = status
@@ -34,15 +34,3 @@
     pom = push origin master
     export = !mkdir tmpexport | git archive master | tar -x -C tmpexport/
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-
-[codebase]
-    username = ericof
-    domain = simplesconsultoria.codebasehq.com
-
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
-
-[mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true

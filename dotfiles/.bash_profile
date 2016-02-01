@@ -1,20 +1,25 @@
 #export SVN_EDITOR="gvim --nofork"
 # MacOSX Lion
 export ARCHFLAGS="-arch x86_64"
-export MACOSX_DEPLOYMENT_TARGET="10.9"
+export MACOSX_DEPLOYMENT_TARGET="10.11"
 export SVN_EDITOR="subl -w"
+export LC_ALL="en_US.UTF-8"
 export LC_LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export COPYFILE_DISABLE=1 #Remove resource forks from tar files
 export PYTHONSTARTUP=~/.pythonrc.py
-#export PYTHONPATH="~/Desenvolvimento/google_appengine:$PYTHONPATH"
-export PATH="~/Simples/Produtos/buildout.development/bin:/Applications/Vagrant/bin/:~/bin/:~/bin/scripts:$PATH"
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
 # Don't put duplicate lines in the history
 export HISTCONTROL=ignoreboth
 export HISTSIZE=50000
+
+# Docker
+export DOCKER_HOST=tcp://192.168.99.100:2376
+export DOCKER_CERT_PATH=~/.docker/machine/machines/default/
+export DOCKER_TLS_VERIFY=1
+
 unset LC_CTYPE
 
 # GIT Magic
