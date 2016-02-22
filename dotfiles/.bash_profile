@@ -1,5 +1,6 @@
-#export SVN_EDITOR="gvim --nofork"
-# MacOSX Lion
+#!/usr/bin/env bash
+
+# MacOSX El Captain
 export ARCHFLAGS="-arch x86_64"
 export MACOSX_DEPLOYMENT_TARGET="10.11"
 export SVN_EDITOR="subl -w"
@@ -23,34 +24,35 @@ export DOCKER_TLS_VERIFY=1
 unset LC_CTYPE
 
 # GIT Magic
-c_cyan=`tput setaf 6`
-c_red=`tput setaf 1`
-c_green=`tput setaf 2`
-c_sgr0=`tput sgr0`
+c_cyan=$(tput setaf 6)
+c_red=$(tput setaf 1)
+c_green=$(tput setaf 2)
+c_sgr0=$(tput sgr0)
 
 #Get git information
 parse_git_branch () {
-        git name-rev HEAD 2>/dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
+    git name-rev HEAD 2>/dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
 }
 
 #Should we push?
 parse_git_push () {
-        git st 2>/dev/null|sed -ne "s/#\ Your\ branch\ is\ ahead\ of\ '.*' by \([0-9]*\)\ commits\{0,1\}./ +\1/p"
+    git st 2>/dev/null|grep "Your branch is "|sed -ne "s/Your\ branch\ is\ ahead\ of\ '[^']*' by \([0-9]*\)\ commit.*/ +\1/p"
+    git st 2>/dev/null|grep "Your branch is "|sed -ne "s/Your\ branch\ is\ behind\ of\ '[^']*' by \([0-9]*\)\ commit.*/ -\1/p"
 }
 
 #Get svn information
 ##Get svn url
 parse_svn_url() {
-        svn info 2>/dev/null | sed -ne 's#^URL: ##p'
+    svn info 2>/dev/null | sed -ne 's#^URL: ##p'
 }
 
 ##Get svn repository root
 parse_svn_repository_root() {
-        svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
+    svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
 }
 ##Get svn revision
 parse_svn_current_revision() {
-        svn info 2>/dev/null | sed -ne 's#^Revision: ##p'
+    svn info 2>/dev/null | sed -ne 's#^Revision: ##p'
 }
 ##Parse everything and return the svn general info
 parse_svn_branch_revision() {
@@ -59,12 +61,12 @@ parse_svn_branch_revision() {
 
 branch_color ()
 {
-        if [ `parse_git_branch|grep -c 'git'` -gt 0 ]
+        if [ "$(parse_git_branch|grep -c 'git')" -gt 0 ]
         then
                 color=""
                 if git diff --quiet 2>/dev/null >&2
                 then
-					if [ `git st -s --untracked-files=no 2>/dev/null|wc -l` -gt 0 ]
+					if [ "$(git st -s --untracked-files=no 2>/dev/null|wc -l)" -gt 0 ]
 					then
                         color="${c_cyan}"
 					else
@@ -74,11 +76,11 @@ branch_color ()
                         color=${c_red}
                 fi
         else
-                if [ `parse_svn_branch_revision|grep -c 'svn'` -gt 0 ]
+                if [ "$(parse_svn_branch_revision|grep -c 'svn')" -gt 0 ]
                 then
 						color=''
 						##Parse st response
-                        if [ `svn st -q|wc -l` -eq 0 ]
+                        if [ "$(svn st -q|wc -l)" -eq 0 ]
                         then
                                 color="${c_green}"
                         else
@@ -88,15 +90,17 @@ branch_color ()
                     return 0
                 fi
         fi
-        echo -ne $color
+        echo -ne "$color"
 }
 
 if [ -f ~/.bash_aliases ]; then
+    # shellcheck source=/dev/null
     . ~/.bash_aliases
 fi
 
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+    # shellcheck source=/dev/null
+    . $(brew --prefix)/etc/bash_completion
 fi
 
 # user@server, relative path, current time
