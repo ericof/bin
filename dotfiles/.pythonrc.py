@@ -1,3 +1,6 @@
-import rlcompleter, readline
-readline.parse_and_bind('tab: complete')
+"""Python default settings."""
+import readline
+import rlcompleter
 
+
+readline.parse_and_bind('tab: complete')

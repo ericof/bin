@@ -9,6 +9,8 @@ export LC_LANG=en_US.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export COPYFILE_DISABLE=1 #Remove resource forks from tar files
+export GOPATH=~/.go
+export GOBIN=$GOPATH/bin
 export PYTHONSTARTUP=~/.pythonrc.py
 shopt -s histappend
 export PROMPT_COMMAND='history -a'
@@ -108,3 +110,5 @@ export PS1='\[\e[32m\][\u@\h] \[\e[33m\w\] [\[$(branch_color)\]$(parse_git_branc
 
 # shellcheck source=/dev/null
 test -e "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
+
+export PATH=$PATH:$GOBIN

@@ -1,6 +1,7 @@
 [user]
     name = Érico Andrei
     email = ericof@gmail.com
+	signingkey = 64F4B613
 
 [branch]
     autosetupmerge = true
